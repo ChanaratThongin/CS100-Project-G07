@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms - CSTU Passport</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <!-- Nav Bar -->
+    <header>
+        <nav>
+            <div class="logo">Our CSTU Passport</div>
+            <ul>
+                <li><a class="menu" href="../index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a class="menu" href=""><i class="fa-solid fa-map"></i> Our Activities</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Form Container -->
+    <div class="form-container">
+        <h1>CSTU Passport</h1>
+        <!-- Main Form -->
+        <form id="myForm" action="#" method="post">
+            <!-- Firstname and Lastname Field -->
+            <div class="form-group">
+                <label for="fullname">Firstname and Lastname</label>
+                <input type="text" id="fullname" name="fullname">
+                <small>Only enter your first name and last name, middle name is not necessary.</small>
+                <span id="fullnameError" class="error"></span>
+            </div>
+
+            <!-- Student ID Field -->
+            <div class="form-group">
+                <label for="studentID">Student ID</label>
+                <input type="text" id="studentID" name="studentID">
+                <small>Please enter your 10-digit student ID.</small>
+                <span id="studentIDError" class="error"></span>
+            </div>
+
+            <!-- University Email Field -->
+            <div class="form-group">
+                <label for="email">University Email</label>
+                <input type="email" id="email" name="email">
+                <small>Please provide your university email in the format "xxx.yyy@dome.tu.ac.th".</small>
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <!-- Work/Activity Title Field -->
+            <div class="form-group">
+                <label for="workTitle">Work/Activity Title</label>
+                <input type="text" id="workTitle" name="workTitle">
+                <small>Please enter your work/activity title.</small>
+                <span id="workTitleError" class="error"></span>
+            </div>
+
+            <!-- Type of Work/Activity Field -->
+            <div class="form-group">
+                <label for="activityType">Type of Work/Activity</label>
+                <select id="activityType" name="activityType">
+                    <option value="0" disabled="" selected="">Select an option</option>
+                    <option value="1">Course</option>
+                    <option value="2">Activity</option>
+                    <option value="3">Work</option>
+                    <option value="4">Research</option>
+                    <option value="5">Sports</option>
+                    <option value="6">Competition</option>
+                    <option value="7">Computer Science</option>
+                </select>
+                <small>Please enter your work/activity type.</small>
+                <span id="activityTypeError" class="error"></span>
+            </div>
+
+            <!-- Academic Year Field -->
+            <div class="form-group">
+                <label for="academicYear">Academic Year</label>
+                <select id="academicYear" name="academicYear">
+                    <option value="0" disabled="" selected="">Select an option</option>
+                    <option value="2561">2561</option>
+                    <option value="2562">2562</option>
+                    <option value="2563">2563</option>
+                    <option value="2564">2564</option>
+                    <option value="2565">2565</option>
+                    <option value="2566">2566</option>
+                    <option value="2567">2567</option>
+                    <option value="2568">2568</option>
+                    <option value="2569">2569</option>
+                </select>
+                <small>Please enter your academic year.</small>
+                <span id="academicYearError" class="error"></span>
+            </div>
+
+            <!-- Semester Field -->
+            <div class="form-group">
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester">
+                    <option value="0" disabled="" selected="">Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="Summer">Summer</option>
+                </select>
+                <small>Please enter your semester.</small>
+                <span id="semesterError" class="error"></span>
+            </div>
+
+            <!-- Start Date/Time Field -->
+            <div class="form-group">
+                <label for="startDate">Start Date/Time</label>
+                <input type="datetime-local" id="startDate" name="startDate" value="">
+                <small>Please enter your start date/time.</small>
+                <span id="startDateError" class="error"></span>
+            </div>
+
+            <!-- End Date/Time Field -->
+            <div class="form-group">
+                <label for="endDate">End Date/Time</label>
+                <input type="datetime-local" id="endDate" name="endDate" value="">
+                <small>Please enter your end date/time.</small>
+                <span id="endDateError" class="error"></span>
+            </div>
+
+            <!-- Location Field -->
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+                <small>Please enter your work/activity location.</small>
+                <span id="locationError" class="error"></span>
+            </div>
+
+            <!-- Description Field -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+                <small>Please enter your work/activity description.</small>
+                <span id="descriptionError" class="error"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="button" value="Submit" onclick="submitForm()">
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../script/script.js"></script>
+
+
+</body>
+
+</html>
