@@ -150,7 +150,46 @@ function validatedescription() {
     return true;
 }
 
+function submitForm() {
+    // Validate form inputs before submission
+    if (!validateName() || !validateStudentID() || !validateEmail() ||
+        !validateworkTitle() || !validateactivityType() || !validateacademicYear() ||
+        !validatesemester() || !validatestartDate() || !validateendDate() ||
+        !validatelocation() || !validatedescription()
+    ) {
+        return;
+    }
+    const startDateInput = document.getElementById("startDate").value;
+    const endDateInput = document.getElementById("endDate").value;
+    const startDate = new Date(startDateInput);
+    const endDate = new Date(endDateInput);
 
+    if (endDate <= startDate) {
+        alert("End datetime should be after the start datetime.");
+        return;
+    }
+
+    const data = {
+        first_name: fullnameInput.value.split(" ")[0],
+        last_name: fullnameInput.value.split(" ")[1],
+        student_id: studentIDInput.value,
+        email: emailInput.value,
+        title: workTitleInput.value,
+        type_of_work_id: activityTypeInput.value,
+        academic_year: academicYearInput.value,
+        semester: semesterInput.value,
+        start_date: startDate,
+        end_date: endDate,
+        location: locationInput.value,
+        description: descriptionInput.value
+    };
+
+    const formattedData = Object.entries(data)
+        .map(([key, value]) => `"${key}": "${value}"`)
+        .join("\n");
+
+    alert(formattedData);
+}
 
 // Event listeners for input validation on user input
 
