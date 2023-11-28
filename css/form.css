@@ -1,0 +1,158 @@
+/* .input-box,
+.select-box,
+.gender-box,
+.column {
+    margin-bottom: 10px;
+}
+
+.outter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    padding: 34px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.inner-container header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+.input-box input,
+.select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 5px 15px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.column {
+    display: flex;
+    column-gap: 10px;
+}
+
+.form .gender {
+    column-gap: 5px;
+}
+
+.form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+.input-box.button {
+    margin-top: 30px;
+    & input {
+        color: #fff;
+        letter-spacing: 1px;
+        border: none;
+        background: #4070f4;
+        cursor: pointer;
+    }
+
+    & input:hover {
+        background: #0e4bf1;
+    }
+} */
+
+/* Styling for the form container */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  
+  /* Center-align the heading and add margin at the bottom */
+  .form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for each form group */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for form group labels */
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  /* Styling for various form input types */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group select,
+  .form-group textarea,
+  .form-group input[type="datetime-local"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Allow vertical resizing for textareas */
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  /* Styling for select dropdowns */
+  .form-group select {
+    width: 100%;
+  }
+  
+  /* Styling for the submit button */
+  .form-group input[type="button"] {
+    background-color: #4070f4;
+    width: 100%;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Styling for small helper text */
+  .form-group small {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* New styles for error messages */
+  
+  /* Position the error message relatively within the form group */
+  .form-group {
+    position: relative;
+  }
+  
+  /* Styling for error messages */
+  .error {
+    color: red;
+    display: block;
+    margin-top: 5px;
+  }
