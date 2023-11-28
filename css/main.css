@@ -1,0 +1,191 @@
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF;
+	font: 16px/30px "Arial", serif;
+	font-weight: normal;
+	height: 100%;
+	color: #000000;
+	line-height: 1;
+	text-rendering: optimizeLegibility;
+}
+
+/* Header Styles */
+header nav {
+	background-color: #FFFFFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 5px;
+	margin-bottom: 60px;
+	height: auto;
+
+}
+
+header nav .logo {
+	font-size: 1.4rem;
+	text-align: center;
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	list-style: none;
+	padding-inline-start: 0;
+}
+
+header nav ul li {
+	padding: 5px 0;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+	line-height: 1.2;
+	color: #000000;
+	margin: 0 0 15px 0;
+	text-align: center;
+	font-size: 30px;
+}
+
+#about {
+	background: #FFFFFF;
+}
+
+#about h3 {
+	color: #000000;
+	text-transform: none;
+	letter-spacing: 0;
+	padding: 0;
+	margin-bottom: 6px;
+}
+
+#about .team {
+	margin-top: 30px;
+}
+
+#team-wrapper {
+	margin: 0 auto;
+}
+
+#team-wrapper .member {
+	margin-bottom: 24px;
+	margin-top: 12px;
+	padding-bottom: 12px;
+	padding-top: 6px;
+	border-radius: 5px;
+}
+
+#team-wrapper .member h3 {
+	line-height: 24px;
+	margin-bottom: 0;
+}
+
+#team-wrapper .member span {
+	position: relative;
+	font-size: 13px;
+	line-height: 15px;
+	color: #000000;
+}
+
+#team-wrapper .member-pic img {
+	vertical-align: bottom;
+}
+
+#team-wrapper .member-social {
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 18px;
+	color: #000000;
+	margin: 0;
+	padding: 0;
+}
+
+#team-wrapper .member-social li {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+#team-wrapper .member-social li a {
+	color: #000000;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+img {
+	-ms-interpolation-mode: bicubic;
+}
+
+.row {
+	width: 94%;
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.row:before,
+.row:after {
+	content: "";
+	display: table;
+}
+
+.row:after {
+	clear: both;
+}
+
+.columns,
+.bgrid {
+	position: relative;
+	min-height: 1px;
+	float: left;
+}
+
+.columns {
+	padding: 0 20px;
+}
+
+.row .twelve {
+	width: 100%;
+}
+
+.bgrid-large .bgrid {
+	width: 25%;
+	margin: 0 20px;
+}
+
+.bgrid {
+	padding: 0 20px;
+	background: #FFFFFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3 {
+	font-size: 20px;
+	line-height: 30px;
+}
+
+p {
+	margin: 15px 0 15px 0;
+}
