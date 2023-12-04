@@ -169,26 +169,76 @@ function submitForm() {
         return;
     }
 
-    const data = {
-        first_name: fullnameInput.value.split(" ")[0],
-        last_name: fullnameInput.value.split(" ")[1],
-        student_id: studentIDInput.value,
-        email: emailInput.value,
-        title: workTitleInput.value,
-        type_of_work_id: activityTypeInput.value,
-        academic_year: academicYearInput.value,
-        semester: semesterInput.value,
-        start_date: startDate,
-        end_date: endDate,
-        location: locationInput.value,
-        description: descriptionInput.value
-    };
+    // Format the date
+    const formattedStartDate = startDate.toLocaleString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    const starttimeComponents = formattedStartDate.split(', ')[1];
+    const startdateComponents = formattedStartDate.split(', ')[0];
 
-    const formattedData = Object.entries(data)
-        .map(([key, value]) => `"${key}": "${value}"`)
-        .join("\n");
+    const formattedEndDate = endDate.toLocaleString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+    const endtimeComponents = formattedEndDate.split(', ')[1];
+    const enddateComponents = formattedEndDate.split(', ')[0];
 
-    alert(formattedData);
+    // const data = {
+    //     first_name: fullnameInput.value.split(" ")[0],
+    //     last_name: fullnameInput.value.split(" ")[1],
+    //     student_id: studentIDInput.value,
+    //     email: emailInput.value,
+    //     title: workTitleInput.value,
+    //     type_of_work_id: activityTypeInput.value,
+    //     academic_year: academicYearInput.value,
+    //     semester: semesterInput.value,
+    //     start_date: startDate,
+    //     end_date: endDate,
+    //     location: locationInput.value,
+    //     description: descriptionInput.value
+    // };
+
+    // const formattedData = Object.entries(data)
+    //     .map(([key, value]) => `"${key}": "${value}"`)
+    //     .join("\n");
+
+    // alert(formattedData);
+    
+
+    // Show Data at Buttom Form
+    const activityDOM = document.querySelector('.data-containers');
+    activityDOM.classList.add('show');
+
+    let divHtml = '<div class="data-container"><div class="top"><div class="left">';
+    divHtml += `
+                <h3>${workTitleInput.value}</h3>
+                <small>${activityTypeInput.value}</small>
+            </div>
+            <div class="right">
+                <small>Start: ${starttimeComponents}, ${startdateComponents}</small>
+                <small>End: ${endtimeComponents}, ${enddateComponents}</small>
+            </div>
+        </div>
+        <p>${descriptionInput.value}</p>
+        <div class="bottom">
+            <div class="left">
+                <h4>Name: ${fullnameInput.value}</h4>
+                <small>ID: ${studentIDInput.value}</small>  
+            </div>
+            <div class="right">
+                <p>${locationInput.value}</p>
+            </div>
+        </div>
+    </div>`
+    activityDOM.innerHTML += divHtml;
+    document.getElementById("myForm").reset();
 }
 
 // Event listeners for input validation on user input
