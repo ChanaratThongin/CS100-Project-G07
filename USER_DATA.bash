@@ -23,19 +23,17 @@ cd /home/ec2-user
 git clone https://github.com/ChanaratThongin/CS100-Project-G07.git
 
 # Navigate to the project directory and install dependencies
-cd /CS100-Project-G07
-# mkdir Backend
-# cd /Backend
-# sudo npm install
+cd /CS100-Project-G07/Backend
+sudo npm install
 
-# Start the application using pm2
-# sudo pm2 start index.js
+Start the application using pm2
+sudo pm2 start index.js
 
-# Save the current pm2 processes
-# sudo pm2 save
+Save the current pm2 processes
+sudo pm2 save
 
-# Ensure pm2 starts on boot
-# sudo pm2 startup
+Ensure pm2 starts on boot
+sudo pm2 startup
 
 sudo yum install -y nginx
 
