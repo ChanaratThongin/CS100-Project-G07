@@ -1,3 +1,8 @@
+const config = {
+    backendUrl: "http://localhost:8000/", // Default backend URL
+};
+const port = 8000;
+
 const fullnameInput = document.getElementById("fullname");
 const studentIDInput = document.getElementById("studentID");
 const emailInput = document.getElementById("email");
@@ -105,17 +110,6 @@ function validatestartDate() {
     }
 }
 
-function validatestartDate() {
-    const errorElement = document.getElementById("startDateError");
-    if (startDateInput.value == "") {
-        errorElement.textContent = 'Please enter your start date/time.';
-        return false;
-    } else {
-        errorElement.textContent = '';
-        return true;
-    }
-}
-
 function validateendDate() {
     const errorElement = document.getElementById("endDateError");
     if (endDateInput.value == "") {
@@ -150,7 +144,8 @@ function validatedescription() {
     return true;
 }
 
-function submitForm() {
+async function submitForm(event) {
+    event.preventDefault();
     // Validate form inputs before submission
     if (!validateName() || !validateStudentID() || !validateEmail() ||
         !validateworkTitle() || !validateactivityType() || !validateacademicYear() ||
@@ -169,80 +164,114 @@ function submitForm() {
         return;
     }
 
-    // Format the date
-    const formattedStartDate = startDate.toLocaleString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-    const starttimeComponents = formattedStartDate.split(', ')[1];
-    const startdateComponents = formattedStartDate.split(', ')[0];
+    const formData = new FormData(event.target);
+    const data = {
+        first_name: formData.get("fullname").split(" ")[0],
+        last_name: formData.get("fullname").split(" ")[1],
+        student_id: parseInt(formData.get("studentID")),
+        email: formData.get("email"),
+        title: formData.get("workTitle"),
+        type_of_work_id: formData.get("activityType"),
+        academic_year: parseInt(formData.get("academicYear")) - 543,
+        semester: parseInt(formData.get("semester")),
+        start_date: formData.get("startDate"),
+        end_date: formData.get("endDate"),
+        location: formData.get("location"),
+        description: formData.get("description")
+    };
 
-    const formattedEndDate = endDate.toLocaleString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-    const endtimeComponents = formattedEndDate.split(', ')[1];
-    const enddateComponents = formattedEndDate.split(', ')[0];
+    try {
+        // Send data to the backend using POST request
+        const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
 
-    // const data = {
-    //     first_name: fullnameInput.value.split(" ")[0],
-    //     last_name: fullnameInput.value.split(" ")[1],
-    //     student_id: studentIDInput.value,
-    //     email: emailInput.value,
-    //     title: workTitleInput.value,
-    //     type_of_work_id: activityTypeInput.value,
-    //     academic_year: academicYearInput.value,
-    //     semester: semesterInput.value,
-    //     start_date: startDate,
-    //     end_date: endDate,
-    //     location: locationInput.value,
-    //     description: descriptionInput.value
-    // };
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log("Form data submitted successfully!");
+            document.getElementById("myForm").reset();
 
-    // const formattedData = Object.entries(data)
-    //     .map(([key, value]) => `"${key}": "${value}"`)
-    //     .join("\n");
+            try {
+                const response = await fetch(`http://${window.location.hostname}:${port}/getPassports`);
+                const passports = await response.json();
 
-    // alert(formattedData);
-    
+                const formattedPassports = passports.map(passport => {
+                    const formattedPassport = {};
+                    for (const [key, value] of Object.entries(passport)) {
+                        formattedPassport[key] = value;
+                    }
+                    return formattedPassport;
+                });
 
-    // Show Data at Buttom Form
-    const activityDOM = document.querySelector('.data-containers');
-    activityDOM.classList.add('show');
+                // Show Data at Bottom Form
+                const activityDOM = document.querySelector('.data-containers');
+                activityDOM.classList.add('show');
 
-    let divHtml = '<div class="data-container"><div class="top"><div class="left">';
-    divHtml += `
-                <h3>${workTitleInput.value}</h3>
-                <small>${activityTypeInput.value}</small>
-            </div>
-            <div class="right">
-                <small>Start: ${starttimeComponents}, ${startdateComponents}</small>
-                <small>End: ${endtimeComponents}, ${enddateComponents}</small>
-            </div>
-        </div>
-        <p>${descriptionInput.value}</p>
-        <div class="bottom">
-            <div class="left">
-                <h4>Name: ${fullnameInput.value}</h4>
-                <small>ID: ${studentIDInput.value}</small>  
-            </div>
-            <div class="right">
-                <p>${locationInput.value}</p>
-            </div>
-        </div>
-    </div>`
-    activityDOM.innerHTML += divHtml;
-    document.getElementById("myForm").reset();
+                // Clear existing content in activityDOM
+                activityDOM.innerHTML = '';
+
+                formattedPassports.forEach((formattedPassport, i) => {
+                    let divHtml = '<div class="data-container"><div class="top"><div class="left">';
+                    divHtml += `<h3>${formattedPassport.title}</h3>
+                                    <small>${formattedPassport.type_of_work_id}</small>
+                                </div>
+                                <div class="right">
+                                    <small>Start: ${formattedPassport.start_date}</small>
+                                    <small>End: ${formattedPassport.end_date}</small>
+                                </div>
+                            </div>
+                            <p>${formattedPassport.description}</p>
+                            <div class="bottom">
+                                <div class="left">
+                                    <h4>Name: ${formattedPassport.first_name} ${formattedPassport.last_name}</h4>
+                                    <small>ID: ${formattedPassport.student_id}</small>  
+                                </div>
+                                <div class="right">
+                                    <p>${formattedPassport.location}</p>
+                                </div>
+                            </div>
+                        </div>`;
+
+                    // Check if the data is not already in the DOM before appending
+                    if (!isDataAlreadyInDOM(activityDOM, formattedPassport)) {
+                        activityDOM.innerHTML += divHtml;
+                    }
+                });
+
+                function isDataAlreadyInDOM(container, formattedPassport) {
+                    // Check if the data with the same ID already exists in the DOM
+                    const existingData = container.querySelectorAll('.data-container');
+                    for (const dataContainer of existingData) {
+                        const id = dataContainer.querySelector('small').textContent.split(': ')[1];
+                        if (id === formattedPassport.student_id) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+            } catch (error) {
+                console.error("An error occurred while getting data:", error);
+            }
+        } else {
+            console.error("Failed to submit form data.");
+
+            // Display error message
+            alert("Failed to submit form data. Please try again.");
+        }
+    } catch (error) {
+        console.error("An error occurred while submitting form data:", error);
+    }
 }
 
-// Event listeners for input validation on user input
+// Event listener for form submission
+document.getElementById("myForm").addEventListener("submit", submitForm);
 
+// Event listeners for input validation on user input
 fullnameInput.addEventListener("input", validateName);
 studentIDInput.addEventListener("input", validateStudentID);
 emailInput.addEventListener("input", validateEmail);
